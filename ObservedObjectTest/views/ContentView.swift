@@ -8,19 +8,16 @@
 
 import SwiftUI
 
-
 final class VideoData: ObservableObject{
     @Published var title:String = ""
     @Published var contentIdea:String = ""
 }
-
 
 struct ContentView: View {
     
     @State private var showSecondView:Bool = false
     
     @ObservedObject var videoData = VideoData()
-    
     
     var body: some View {
         NavigationView{
@@ -32,7 +29,9 @@ struct ContentView: View {
                 Divider()
                 
                 Button("Add new Video"){
+                    
                     self.showSecondView.toggle()
+                    
                 }.sheet(isPresented: $showSecondView){
                     
                     SecondView(videoTitle: self.$videoData.title, videoContent: self.$videoData.contentIdea)
@@ -41,8 +40,6 @@ struct ContentView: View {
                 Spacer()
             }.navigationBarTitle(Text("HomeView"))
         }
-        
-        
     }
 }
 

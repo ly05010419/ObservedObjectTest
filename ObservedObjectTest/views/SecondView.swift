@@ -19,20 +19,16 @@ struct SecondView: View {
         NavigationView{
             VStack(alignment: .leading){
                 
-                TextField("Video Title", text: $videoTitle).background(Color.blue)
-                TextField("Video Content", text: $videoContent).background(Color.red).frame(height: 50)
+                TextField("Video Title", text: $videoTitle).padding(8).background(Color.blue).clipShape(RoundedRectangle(cornerRadius: 10))
+                TextField("Video Content", text: $videoContent).padding(8).background(Color.red).clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 Divider()
                 Button("Dissmiss the VC"){
                     self.presentationMode.wrappedValue.dismiss()
-                    
                 }
                 Spacer()
                 
             }.padding().navigationBarTitle(Text("SecondView"))
-            
-            
-            
         }
     }
 }
@@ -41,6 +37,6 @@ struct SecondView_Previews: PreviewProvider {
     
     @ObservedObject static var videoData = VideoData()
     static var previews: some View {
-         SecondView(videoTitle: $videoData.title, videoContent: $videoData.contentIdea)
+        SecondView(videoTitle: $videoData.title, videoContent: $videoData.contentIdea)
     }
 }
